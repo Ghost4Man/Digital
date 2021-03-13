@@ -58,6 +58,10 @@ public final class TerminalDialog extends JDialog {
         super(parent, getDialogTitle(attr), false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         width = attr.get(Keys.TERM_WIDTH);
+        textArea = new JTextArea(attr.get(Keys.TERM_HEIGHT), width) {{
+            setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+            setFont(new Font("Consolas", Font.PLAIN, Screen.getInstance().getFontSize()));
+        }};
         getContentPane().add(new JScrollPane(textArea));
 
         JToolBar toolBar = new JToolBar();
