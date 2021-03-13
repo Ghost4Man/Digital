@@ -15,6 +15,8 @@ import de.neemann.gui.Screen;
 import de.neemann.gui.ToolTipAction;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -56,8 +58,6 @@ public final class TerminalDialog extends JDialog {
         super(parent, getDialogTitle(attr), false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         width = attr.get(Keys.TERM_WIDTH);
-        textArea = new JTextArea(attr.get(Keys.TERM_HEIGHT), width);
-        textArea.setFont(new Font("monospaced", Font.PLAIN, Screen.getInstance().getFontSize()));
         getContentPane().add(new JScrollPane(textArea));
 
         JToolBar toolBar = new JToolBar();
@@ -67,6 +67,19 @@ public final class TerminalDialog extends JDialog {
                 textArea.setText("");
             }
         }.setToolTip(Lang.get("menu_terminalDelete_tt")).createJButtonNoText());
+
+        toolBar.add(new JSlider(5, 80) {{
+            addChangeListener(new ChangeListener(){
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    JSlider slider = (JSlider)e.getSource();
+                    Font oldFont = textArea.getFont();
+                    textArea.setFont(oldFont.deriveFont((float)slider.getValue()));
+                }
+            });
+            setToolTipText("Change font size");
+        }});
+
         getContentPane().add(toolBar, BorderLayout.NORTH);
 
         pack();
