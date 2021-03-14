@@ -19,6 +19,7 @@ import de.neemann.digital.draw.graphics.Polygon;
 import de.neemann.digital.draw.graphics.*;
 import de.neemann.digital.gui.components.CircuitComponent;
 import de.neemann.digital.gui.components.SingleValueDialog;
+import de.neemann.gui.Mouse;
 import de.neemann.gui.Screen;
 
 import java.awt.*;
@@ -142,7 +143,8 @@ public class InputShape implements Shape {
         @Override
         public void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e) {
             ObservableValue value = ioState.getOutput(0);
-            if (bits == 1) {
+            // allow right-clicking multiple-bit input to quickly increment
+            if (bits == 1 || !Mouse.getMouse().isPrimaryClick(e)) {
                 modelSync.modify(() -> {
                     if (isHighZ) {
                         if (value.isHighZ()) {
@@ -153,7 +155,7 @@ public class InputShape implements Shape {
                         } else if (value.getValue() == 0) value.setValue(1);
                         else value.setToHighZ();
                     } else
-                        value.setValue(1 - value.getValue());
+                        value.setValue((value.getValue() + 1) % (long)Math.pow(2, bits));
                 });
             } else {
                 if (dialog == null || !dialog.isVisible()) {
