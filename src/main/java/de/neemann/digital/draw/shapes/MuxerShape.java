@@ -5,6 +5,8 @@
  */
 package de.neemann.digital.draw.shapes;
 
+import de.neemann.digital.core.ObservableValue;
+import de.neemann.digital.core.wiring.Multiplexer;
 import de.neemann.digital.core.element.ElementAttributes;
 import de.neemann.digital.core.element.Keys;
 import de.neemann.digital.core.element.PinDescriptions;
@@ -24,6 +26,8 @@ public class MuxerShape implements Shape {
     private final PinDescriptions inputs;
     private final PinDescriptions outputs;
     private Pins pins;
+    private Pin outputPin;
+    private IOState ioState;
 
     /**
      * Creates a new instance
@@ -51,13 +55,15 @@ public class MuxerShape implements Shape {
                 for (int i = 0; i < inputCount; i++) {
                     pins.add(new Pin(new Vector(0, i * SIZE), inputs.get(i + 1)));
                 }
-            pins.add(new Pin(new Vector(SIZE * 2, (inputCount / 2) * SIZE), outputs.get(0)));
+            outputPin = new Pin(new Vector(SIZE * 2, (inputCount / 2) * SIZE), outputs.get(0));
+            pins.add(outputPin);
         }
         return pins;
     }
 
     @Override
     public Interactor applyStateMonitor(IOState ioState) {
+        this.ioState = ioState;
         return null;
     }
 
@@ -69,5 +75,16 @@ public class MuxerShape implements Shape {
                 .add(SIZE * 2 - 1, inputCount * SIZE - 5)
                 .add(1, inputCount * SIZE + 4), Style.NORMAL);
         graphic.drawText(new Vector(3, 2), "0", Orientation.LEFTTOP, Style.SHAPE_PIN);
+        
+        // draw wire between selected input pin and output
+        if (pins != null && ioState != null && ioState.getElement() instanceof Multiplexer) {
+            int selectedInputPinIndex = (int)ioState.getInput(0).getValue() + 1;
+            Pin selectedInputPin = pins.get(selectedInputPinIndex);
+            if (selectedInputPin != null) {
+                ObservableValue value = ioState.getInput(selectedInputPinIndex);
+                graphic.drawLine(selectedInputPin.getPos(), outputPin.getPos(), 
+                    (value == null) ? Style.WIRE : value.getBool() ? Style.WIRE_HIGH : Style.WIRE_LOW);
+            }
+        }
     }
 }
