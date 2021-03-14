@@ -15,6 +15,7 @@ import de.neemann.gui.Screen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import static de.neemann.digital.draw.shapes.GenericShape.SIZE;
@@ -341,9 +342,9 @@ public class VisualElement implements Drawable, Movable, AttributeListener {
      * @param posInComponent position in CircuitComponent
      * @param modelSync      used to access the running model
      */
-    public void elementClicked(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync) {
+    public void elementClicked(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync, MouseEvent e) {
         if (interactor != null)
-            interactor.clicked(cc, pos, ioState, element, modelSync);
+            interactor.clicked(cc, pos, ioState, element, modelSync, e);
     }
 
     /**
@@ -355,9 +356,9 @@ public class VisualElement implements Drawable, Movable, AttributeListener {
      * @param posInComponent position in CircuitComponent
      * @param modelSync      used to access the running model
      */
-    public void elementPressed(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync) {
+    public void elementPressed(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync, MouseEvent e) {
         if (interactor != null)
-            interactor.pressed(cc, pos, ioState, element, modelSync);
+            interactor.pressed(cc, pos, ioState, element, modelSync, e);
     }
 
     /**
@@ -369,9 +370,9 @@ public class VisualElement implements Drawable, Movable, AttributeListener {
      * @param posInComponent position in CircuitComponent
      * @param modelSync      used to access the running model
      */
-    public void elementReleased(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync) {
+    public void elementReleased(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync, MouseEvent e) {
         if (interactor != null)
-            interactor.released(cc, pos, ioState, element, modelSync);
+            interactor.released(cc, pos, ioState, element, modelSync, e);
     }
 
     /**

@@ -13,6 +13,7 @@ import de.neemann.digital.draw.graphics.Vector;
 import de.neemann.digital.gui.components.CircuitComponent;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * The VisualParts Interactor instance is called if the element is clicked
@@ -23,11 +24,11 @@ import java.awt.*;
 public abstract class Interactor implements InteractorInterface {
 
     @Override
-    public void pressed(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+    public void pressed(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e) {
     }
 
     @Override
-    public void released(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+    public void released(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e) {
     }
 
     @Override

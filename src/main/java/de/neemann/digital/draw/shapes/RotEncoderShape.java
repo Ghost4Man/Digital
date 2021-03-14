@@ -17,6 +17,7 @@ import de.neemann.digital.draw.graphics.Polygon;
 import de.neemann.digital.gui.components.CircuitComponent;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 import static de.neemann.digital.draw.shapes.GenericShape.SIZE;
 import static de.neemann.digital.draw.shapes.GenericShape.SIZE2;
@@ -60,16 +61,16 @@ public class RotEncoderShape implements Shape {
             private boolean initial;
 
             @Override
-            public void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+            public void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e) {
             }
 
             @Override
-            public void pressed(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+            public void pressed(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e) {
                 initial = true;
             }
 
             @Override
-            public void released(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+            public void released(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e) {
             }
 
             @Override

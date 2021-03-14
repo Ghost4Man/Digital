@@ -13,6 +13,7 @@ import de.neemann.digital.draw.graphics.Vector;
 import de.neemann.digital.gui.components.CircuitComponent;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * The {@link de.neemann.digital.draw.elements.VisualElement}s InteractorInterface instance is called
@@ -30,8 +31,9 @@ public interface InteractorInterface {
      * @param ioState   the state of the element
      * @param element   the element which is clicked
      * @param modelSync used to sync model access
+     * @param e         the mouse event
      */
-    void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync);
+    void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e);
 
     /**
      * Called if mouse is pressed on running model
@@ -41,8 +43,9 @@ public interface InteractorInterface {
      * @param ioState   the state of the element
      * @param element   the element on which the mouse is pressed
      * @param modelSync used to sync model access
+     * @param e         the mouse event
      */
-    void pressed(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync);
+    void pressed(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e);
 
     /**
      * Called if mouse is released on running model
@@ -52,8 +55,9 @@ public interface InteractorInterface {
      * @param ioState   the state of the element
      * @param element   the element on which the mouse is released
      * @param modelSync used to sync model access
+     * @param e         the mouse event
      */
-    void released(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync);
+    void released(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync, MouseEvent e);
 
     /**
      * Called if mouse is dragged on running model
