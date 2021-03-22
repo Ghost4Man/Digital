@@ -341,6 +341,7 @@ public class VisualElement implements Drawable, Movable, AttributeListener {
      * @param pos            the position
      * @param posInComponent position in CircuitComponent
      * @param modelSync      used to access the running model
+     * @param e              the mouse event
      */
     public void elementClicked(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync, MouseEvent e) {
         if (interactor != null)
@@ -355,6 +356,7 @@ public class VisualElement implements Drawable, Movable, AttributeListener {
      * @param pos            the position
      * @param posInComponent position in CircuitComponent
      * @param modelSync      used to access the running model
+     * @param e              the mouse event
      */
     public void elementPressed(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync, MouseEvent e) {
         if (interactor != null)
@@ -369,6 +371,7 @@ public class VisualElement implements Drawable, Movable, AttributeListener {
      * @param pos            the position
      * @param posInComponent position in CircuitComponent
      * @param modelSync      used to access the running model
+     * @param e              the mouse event
      */
     public void elementReleased(CircuitComponent cc, Point pos, Vector posInComponent, SyncAccess modelSync, MouseEvent e) {
         if (interactor != null)

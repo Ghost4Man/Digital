@@ -155,7 +155,7 @@ public class InputShape implements Shape {
                         } else if (value.getValue() == 0) value.setValue(1);
                         else value.setToHighZ();
                     } else
-                        value.setValue((value.getValue() + 1) % (long)Math.pow(2, bits));
+                        value.setValue((value.getValue() + 1) % (long) Math.pow(2, bits));
                 });
             } else {
                 if (dialog == null || !dialog.isVisible()) {

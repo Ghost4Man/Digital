@@ -75,14 +75,14 @@ public class MuxerShape implements Shape {
                 .add(SIZE * 2 - 1, inputCount * SIZE - 5)
                 .add(1, inputCount * SIZE + 4), Style.NORMAL);
         graphic.drawText(new Vector(3, 2), "0", Orientation.LEFTTOP, Style.SHAPE_PIN);
-        
+
         // draw wire between selected input pin and output
         if (pins != null && ioState != null && ioState.getElement() instanceof Multiplexer) {
-            int selectedInputPinIndex = (int)ioState.getInput(0).getValue() + 1;
+            int selectedInputPinIndex = (int) ioState.getInput(0).getValue() + 1;
             Pin selectedInputPin = pins.get(selectedInputPinIndex);
             if (selectedInputPin != null) {
                 ObservableValue value = ioState.getInput(selectedInputPinIndex);
-                graphic.drawLine(selectedInputPin.getPos(), outputPin.getPos(), 
+                graphic.drawLine(selectedInputPin.getPos(), outputPin.getPos(),
                     (value == null) ? Style.WIRE : value.getBool() ? Style.WIRE_HIGH : Style.WIRE_LOW);
             }
         }

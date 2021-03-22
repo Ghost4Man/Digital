@@ -76,9 +76,9 @@ public final class TerminalDialog extends JDialog {
             addChangeListener(new ChangeListener(){
                 @Override
                 public void stateChanged(ChangeEvent e) {
-                    JSlider slider = (JSlider)e.getSource();
+                    JSlider slider = (JSlider) e.getSource();
                     Font oldFont = textArea.getFont();
-                    textArea.setFont(oldFont.deriveFont((float)slider.getValue()));
+                    textArea.setFont(oldFont.deriveFont((float) slider.getValue()));
                 }
             });
             setToolTipText("Change font size");
